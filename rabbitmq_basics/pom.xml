@@ -4,16 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.6</version>
+        <groupId>com.at2024</groupId>
+        <artifactId>rabbitmq_study</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.at2024</groupId>
-    <artifactId>rabbitmq_study</artifactId>
+    <artifactId>rabbitmq_basics</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>rabbitmq_study</name>
+    <name>rabbitmq_basics</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -23,10 +22,36 @@
         <spring-boot.version>2.6.13</spring-boot.version>
     </properties>
 
-    <!-- 子模块定义 -->
-    <modules>
-        <module>rabbitmq_basics</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.20.0</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -44,6 +69,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>com.at2024.rabbitmq_basics.RabbitmqBasicsApplication</mainClass>
+                    <skip>true</skip>
+                </configuration>
                 <executions>
                     <execution>
                         <id>repackage</id>
