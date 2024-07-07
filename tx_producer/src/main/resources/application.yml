@@ -1,0 +1,10 @@
+spring:
+  rabbitmq:
+    host: 192.168.0.147
+    port: 5672
+    username: lyh
+    password: aaa111
+    virtual-host: /
+logging:
+  level:
+    com.at2024.springboot_consumer.mq.listener.MyMessageListener: info
