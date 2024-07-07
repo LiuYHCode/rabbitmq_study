@@ -4,7 +4,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 public class ConnectionUtil {
-    public static final String HOST_ADDRESS = "192.168.0.145";
+    public static final String HOST_ADDRESS = "192.168.0.147";
 
     public static Connection getConnection() throws Exception {
 
@@ -30,7 +30,7 @@ public class ConnectionUtil {
 
     public static void main(String[] args) throws Exception {
         Connection con = ConnectionUtil.getConnection();
-        // amqp://lyh@192.168.0.145:5672/
+        // amqp://lyh@192.168.0.147:5672/
         System.out.println(con);
         con.close();
     }

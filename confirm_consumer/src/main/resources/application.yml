@@ -5,6 +5,9 @@ spring:
     username: lyh
     password: aaa111
     virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual # 把消息确认模式改为手动确认
 logging:
   level:
     com.at2024.springboot_consumer.mq.listener.MyMessageListener: info

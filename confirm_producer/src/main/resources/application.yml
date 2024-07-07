@@ -1,0 +1,12 @@
+spring:
+  rabbitmq:
+    host: 192.168.0.147
+    port: 5672
+    username: lyh
+    password: aaa111
+    virtual-host: /
+    publisher-confirm-type: CORRELATED # 交换机的确认
+    publisher-returns: true # 队列的确认
+logging:
+  level:
+    com.at2024.confirm_producer.mq.config.MQProducerAckConfig: info
