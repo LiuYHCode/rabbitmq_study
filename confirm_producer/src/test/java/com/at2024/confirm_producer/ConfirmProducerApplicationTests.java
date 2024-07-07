@@ -47,4 +47,13 @@ class ConfirmProducerApplicationTests {
                 "Hello at2024");
     }
 
+    @Test
+    public void test04SendMessage() {
+        for (int i = 0; i < 100; i++) {
+            rabbitTemplate.convertAndSend(
+                EXCHANGE_DIRECT,
+                ROUTING_KEY,
+                "Hello at2024_" + i);
+        }
+    }
 }

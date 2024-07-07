@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassDescription:
@@ -62,7 +63,8 @@ public class MyMessageListener {
             // 2、正常业务操作
             log.info("消费端接收到消息内容：" + dataString);
 
-             System.out.println(10 / 0);
+//            System.out.println(10 / 0);
+            TimeUnit.SECONDS.sleep(1);
 
             // 3、给 RabbitMQ 服务器返回 ACK 确认信息
             // 3.1、参数一：deliveryTag，当前消息的 deliveryTag 值
