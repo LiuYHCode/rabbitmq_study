@@ -14,6 +14,15 @@ class ConfirmProducerApplicationTests {
     public static final String ROUTING_KEY = "order";
     public static final String STOCK_ROUTING_KEY = "stock";
 
+    public static final String EXCHANGE_NORMAL = "exchange.normal.video";
+    public static final String EXCHANGE_DEAD_LETTER = "exchange.dead.letter.video";
+
+    public static final String ROUTING_KEY_NORMAL = "routing.key.normal.video";
+    public static final String ROUTING_KEY_DEAD_LETTER = "routing.key.dead.letter.video";
+
+    public static final String QUEUE_NORMAL = "queue.normal.video";
+    public static final String QUEUE_DEAD_LETTER = "queue.dead.letter.video";
+
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
@@ -85,5 +94,29 @@ class ConfirmProducerApplicationTests {
                 EXCHANGE_DIRECT,
                 STOCK_ROUTING_KEY,
                 "Hello at2024", messagePostProcessor);
+    }
+
+    @Test
+    public void testSendMessageButReject() {
+        rabbitTemplate.convertAndSend(
+                EXCHANGE_NORMAL,
+                ROUTING_KEY_NORMAL,
+                "测试死信情况1：消息被拒绝");
+    }
+
+    @Test
+    public void testSendMessageOutOfMaxLen() {
+        for (int i = 0; i < 10; i++) {
+            rabbitTemplate.convertAndSend(
+                    EXCHANGE_NORMAL,
+                    ROUTING_KEY_NORMAL,
+                    "测试死信情况2" + i);
+        }
+        for (int i = 0; i < 10; i++) {
+            rabbitTemplate.convertAndSend(
+                    EXCHANGE_NORMAL,
+                    ROUTING_KEY_NORMAL,
+                    "测试死信情况2：消息超过队列最大容量" + i);
+        }
     }
 }
